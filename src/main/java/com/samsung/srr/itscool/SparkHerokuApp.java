@@ -1,11 +1,11 @@
-/**
+package com.samsung.srr.itscool; /**
  * Created by raiym on 1/13/16.
  */
 
 import com.google.gson.Gson;
-import model.Sql2oUser;
-import model.User;
-import net.CustomResponse;
+import com.samsung.srr.itscool.model.Sql2oUser;
+import com.samsung.srr.itscool.model.User;
+import com.samsung.srr.itscool.net.CustomResponse;
 import org.apache.commons.lang.RandomStringUtils;
 import org.sql2o.Sql2o;
 import org.sql2o.converters.UUIDConverter;
@@ -14,8 +14,7 @@ import spark.Spark;
 
 import java.util.UUID;
 
-import static spark.Spark.get;
-import static spark.Spark.post;
+import static spark.Spark.*;
 
 
 public class SparkHerokuApp {
@@ -27,6 +26,7 @@ public class SparkHerokuApp {
     private static Gson gson;
 
     public static void main(String[] args) {
+        port(getHerokuAssignedPort());
         gson = new Gson();
         Spark.staticFileLocation("/public");
 
@@ -87,5 +87,13 @@ public class SparkHerokuApp {
             }
             return gson.toJson(new CustomResponse<>(1, "Answer: Life is about playing your best hand, with the cards you are dealt.", null));
         });
+    }
+
+    static int getHerokuAssignedPort() {
+        ProcessBuilder processBuilder = new ProcessBuilder();
+        if (processBuilder.environment().get("PORT") != null) {
+            return Integer.parseInt(processBuilder.environment().get("PORT"));
+        }
+        return 4567; //return default port if heroku-port isn't set (i.e. on localhost)
     }
 }

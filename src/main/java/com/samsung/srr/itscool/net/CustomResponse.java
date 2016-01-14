@@ -1,4 +1,4 @@
-package net;
+package com.samsung.srr.itscool.net;
 
 /**
  * Created by raiym on 1/14/16 at 11:54 AM.

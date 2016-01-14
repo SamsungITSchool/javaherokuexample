@@ -1,6 +1,5 @@
-package model;
+package com.samsung.srr.itscool.model;
 
-import net.CustomResponse;
 import org.apache.commons.validator.routines.EmailValidator;
 import org.mindrot.jbcrypt.BCrypt;
 

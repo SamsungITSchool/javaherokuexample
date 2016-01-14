@@ -1,4 +1,4 @@
-package model;
+package com.samsung.srr.itscool.model;
 
 import org.mindrot.jbcrypt.BCrypt;
 import org.sql2o.Connection;
