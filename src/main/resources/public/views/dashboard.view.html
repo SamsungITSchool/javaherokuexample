@@ -1,0 +1,12 @@
+<div ng-controller="userController as userCtrl">
+    <h1>Dashboard</h1>
+    <div>Hello, {{loadUser().email}}! We have been waiting for you for a long-long time. Now you can get secret answer
+        about human being!
+    </div>
+    <br/>
+    <button type="submit" class="btn btn-default" ng-click="getAnswer(user)">Get Secret Answer</button>
+    <br/><br/>
+    <div class="alert alert-success" ng-show="isShowAlert">
+        {{message}}
+    </div>
+</div>

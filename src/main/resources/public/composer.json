@@ -1,0 +1,12 @@
+{
+    "name": "raiym/php-heroku-webinar",
+    "description": "Test application for webinar (25 December 2015)",
+    "authors": [
+        {
+            "name": "raiym",
+            "email": "r.kapishev@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
