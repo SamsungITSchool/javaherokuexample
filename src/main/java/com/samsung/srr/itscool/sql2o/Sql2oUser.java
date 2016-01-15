@@ -1,5 +1,6 @@
-package com.samsung.srr.itscool.model;
+package com.samsung.srr.itscool.sql2o;
 
+import com.samsung.srr.itscool.model.User;
 import org.mindrot.jbcrypt.BCrypt;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;

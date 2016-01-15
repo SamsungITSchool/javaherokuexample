@@ -20,6 +20,5 @@ public class User {
 
     public boolean isDataValid() {
         return !(this.email == null || this.password == null) && EmailValidator.getInstance().isValid(this.email);
-
     }
 }

@@ -3,16 +3,12 @@ package com.samsung.srr.itscool; /**
  */
 
 import com.google.gson.Gson;
-import com.samsung.srr.itscool.model.Sql2oUser;
 import com.samsung.srr.itscool.model.User;
 import com.samsung.srr.itscool.net.CustomResponse;
+import com.samsung.srr.itscool.sql2o.Sql2oUser;
 import org.apache.commons.lang.RandomStringUtils;
 import org.sql2o.Sql2o;
-import org.sql2o.converters.UUIDConverter;
-import org.sql2o.quirks.PostgresQuirks;
 import spark.Spark;
-
-import java.util.UUID;
 
 import static spark.Spark.*;
 
@@ -27,16 +23,11 @@ public class SparkHerokuApp {
 
     public static void main(String[] args) {
         port(getHerokuAssignedPort());
-        gson = new Gson();
         Spark.staticFileLocation("/public");
 
-        Sql2o sql2o = new Sql2o("jdbc:postgresql://" + dbHost + ":" + dbPort + "/" + dbName + "?sslmode=require",
-                dbUsername, dbPassword, new PostgresQuirks() {
-            {
-                // make sure we use default UUID converter.
-                converters.put(UUID.class, new UUIDConverter());
-            }
-        });
+        gson = new Gson();
+
+        Sql2o sql2o = new Sql2o("jdbc:postgresql://" + dbHost + ":" + dbPort + "/" + dbName + "?sslmode=require", dbUsername, dbPassword);
         Sql2oUser sql2oUser = new Sql2oUser(sql2o);
 
         post("api/signup", (req, res) -> {
